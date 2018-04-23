@@ -1,1 +1,1 @@
-creating a branch in git is fast.
+creating a branch in git is fast & simple.
