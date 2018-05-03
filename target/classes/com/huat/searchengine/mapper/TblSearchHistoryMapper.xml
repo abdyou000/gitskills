@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huat.searchengine.mapper.TblSearchHistoryMapper">
+	<resultMap id="BaseResultMap" type="com.huat.searchengine.entity.TblSearchHistory">
+		<id column="search_id" jdbcType="VARCHAR" property="searchId" />
+		<result column="search_time" jdbcType="BIGINT" property="searchTime" />
+		<result column="search_content" jdbcType="VARCHAR" property="searchContent" />
+		<result column="search_type" jdbcType="BIT" property="searchType" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		search_id, search_time, search_content, search_type, user_id
+	</sql>
+	<select id="selectByExample"
+		parameterType="com.huat.searchengine.entity.TblSearchHistoryExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from tbl_search_history
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tbl_search_history
+		where search_id = #{searchId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tbl_search_history
+		where search_id = #{searchId,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.huat.searchengine.entity.TblSearchHistoryExample">
+		delete from tbl_search_history
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huat.searchengine.entity.TblSearchHistory">
+		insert into tbl_search_history (search_id, search_time, search_content,
+		search_type, user_id)
+		values (#{searchId,jdbcType=VARCHAR}, #{searchTime,jdbcType=BIGINT},
+		#{searchContent,jdbcType=VARCHAR},
+		#{searchType,jdbcType=BIT}, #{userId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huat.searchengine.entity.TblSearchHistory">
+		insert into tbl_search_history
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="searchId != null">
+				search_id,
+			</if>
+			<if test="searchTime != null">
+				search_time,
+			</if>
+			<if test="searchContent != null">
+				search_content,
+			</if>
+			<if test="searchType != null">
+				search_type,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="searchId != null">
+				#{searchId,jdbcType=VARCHAR},
+			</if>
+			<if test="searchTime != null">
+				#{searchTime,jdbcType=BIGINT},
+			</if>
+			<if test="searchContent != null">
+				#{searchContent,jdbcType=VARCHAR},
+			</if>
+			<if test="searchType != null">
+				#{searchType,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.huat.searchengine.entity.TblSearchHistoryExample"
+		resultType="java.lang.Long">
+		select count(*) from tbl_search_history
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tbl_search_history
+		<set>
+			<if test="record.searchId != null">
+				search_id = #{record.searchId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.searchTime != null">
+				search_time = #{record.searchTime,jdbcType=BIGINT},
+			</if>
+			<if test="record.searchContent != null">
+				search_content = #{record.searchContent,jdbcType=VARCHAR},
+			</if>
+			<if test="record.searchType != null">
+				search_type = #{record.searchType,jdbcType=BIT},
+			</if>
+			<if test="record.userId != null">
+				user_id = #{record.userId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tbl_search_history
+		set search_id = #{record.searchId,jdbcType=VARCHAR},
+		search_time = #{record.searchTime,jdbcType=BIGINT},
+		search_content = #{record.searchContent,jdbcType=VARCHAR},
+		search_type = #{record.searchType,jdbcType=BIT},
+		user_id = #{record.userId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huat.searchengine.entity.TblSearchHistory">
+		update tbl_search_history
+		<set>
+			<if test="searchTime != null">
+				search_time = #{searchTime,jdbcType=BIGINT},
+			</if>
+			<if test="searchContent != null">
+				search_content = #{searchContent,jdbcType=VARCHAR},
+			</if>
+			<if test="searchType != null">
+				search_type = #{searchType,jdbcType=BIT},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where search_id = #{searchId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huat.searchengine.entity.TblSearchHistory">
+		update tbl_search_history
+		set search_time = #{searchTime,jdbcType=BIGINT},
+		search_content = #{searchContent,jdbcType=VARCHAR},
+		search_type = #{searchType,jdbcType=BIT},
+		user_id = #{userId,jdbcType=VARCHAR}
+		where search_id = #{searchId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 根据用户搜索历史记录按时间排序去前十条 -->
+	<select id="getHistoryByUserIdLimit10" resultMap="BaseResultMap">
+		SELECT * FROM tbl_search_history
+		WHERE user_id = #{userId}
+		AND search_content LIKE '%${content}%'
+		ORDER BY search_time DESC
+		LIMIT 10
+	</select>
+</mapper>

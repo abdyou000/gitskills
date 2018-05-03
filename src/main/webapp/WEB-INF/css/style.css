@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -25px;
+}
+
+.footer, .push {
+    height: 25px;
+}
+
+
+
+
+.middle {
+    text-align: center;
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+}
+
+.info {
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    padding: 40px;
+}
+
+.info a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: green;
+}

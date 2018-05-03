@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huat.searchengine.mapper.TblArticleMapper">
+	<resultMap id="BaseResultMap" type="com.huat.searchengine.entity.TblArticle">
+		<id column="article_id" jdbcType="VARCHAR" property="articleId" />
+		<result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+		<result column="article_address" jdbcType="VARCHAR" property="articleAddress" />
+		<result column="comment_quantity" jdbcType="INTEGER" property="commentQuantity" />
+		<result column="browse_quantity" jdbcType="INTEGER" property="browseQuantity" />
+		<result column="publish_date" jdbcType="BIGINT" property="publishDate" />
+		<result column="article_desc" jdbcType="VARCHAR" property="articleDesc" />
+		<result column="article_type" jdbcType="TINYINT" property="articleType" />
+		<result column="hot" jdbcType="BIT" property="hot" />
+		<result column="sticky" jdbcType="BIT" property="sticky" />
+		<result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+		<result column="column_id" jdbcType="VARCHAR" property="columnId" />
+		<result column="expert_id" jdbcType="VARCHAR" property="expertId" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		article_id, article_title, article_address, comment_quantity, browse_quantity,
+		publish_date,
+		article_desc, article_type, hot, sticky, category_id, column_id, expert_id
+	</sql>
+	<select id="selectByExample" parameterType="com.huat.searchengine.entity.TblArticleExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from tbl_article
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tbl_article
+		where article_id = #{articleId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tbl_article
+		where article_id = #{articleId,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huat.searchengine.entity.TblArticleExample">
+		delete from tbl_article
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huat.searchengine.entity.TblArticle">
+		insert into tbl_article (article_id, article_title, article_address,
+		comment_quantity, browse_quantity, publish_date,
+		article_desc, article_type, hot,
+		sticky, category_id, column_id,
+		expert_id)
+		values (#{articleId,jdbcType=VARCHAR}, #{articleTitle,jdbcType=VARCHAR},
+		#{articleAddress,jdbcType=VARCHAR},
+		#{commentQuantity,jdbcType=INTEGER},
+		#{browseQuantity,jdbcType=INTEGER}, #{publishDate,jdbcType=BIGINT},
+		#{articleDesc,jdbcType=VARCHAR}, #{articleType,jdbcType=TINYINT},
+		#{hot,jdbcType=BIT},
+		#{sticky,jdbcType=BIT}, #{categoryId,jdbcType=VARCHAR}, #{columnId,jdbcType=VARCHAR},
+		#{expertId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huat.searchengine.entity.TblArticle">
+		insert into tbl_article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="articleId != null">
+				article_id,
+			</if>
+			<if test="articleTitle != null">
+				article_title,
+			</if>
+			<if test="articleAddress != null">
+				article_address,
+			</if>
+			<if test="commentQuantity != null">
+				comment_quantity,
+			</if>
+			<if test="browseQuantity != null">
+				browse_quantity,
+			</if>
+			<if test="publishDate != null">
+				publish_date,
+			</if>
+			<if test="articleDesc != null">
+				article_desc,
+			</if>
+			<if test="articleType != null">
+				article_type,
+			</if>
+			<if test="hot != null">
+				hot,
+			</if>
+			<if test="sticky != null">
+				sticky,
+			</if>
+			<if test="categoryId != null">
+				category_id,
+			</if>
+			<if test="columnId != null">
+				column_id,
+			</if>
+			<if test="expertId != null">
+				expert_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="articleId != null">
+				#{articleId,jdbcType=VARCHAR},
+			</if>
+			<if test="articleTitle != null">
+				#{articleTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="articleAddress != null">
+				#{articleAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="commentQuantity != null">
+				#{commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="browseQuantity != null">
+				#{browseQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="publishDate != null">
+				#{publishDate,jdbcType=BIGINT},
+			</if>
+			<if test="articleDesc != null">
+				#{articleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="articleType != null">
+				#{articleType,jdbcType=TINYINT},
+			</if>
+			<if test="hot != null">
+				#{hot,jdbcType=BIT},
+			</if>
+			<if test="sticky != null">
+				#{sticky,jdbcType=BIT},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="columnId != null">
+				#{columnId,jdbcType=VARCHAR},
+			</if>
+			<if test="expertId != null">
+				#{expertId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huat.searchengine.entity.TblArticleExample"
+		resultType="java.lang.Long">
+		select count(*) from tbl_article
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tbl_article
+		<set>
+			<if test="record.articleId != null">
+				article_id = #{record.articleId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleTitle != null">
+				article_title = #{record.articleTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleAddress != null">
+				article_address = #{record.articleAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="record.commentQuantity != null">
+				comment_quantity = #{record.commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.browseQuantity != null">
+				browse_quantity = #{record.browseQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.publishDate != null">
+				publish_date = #{record.publishDate,jdbcType=BIGINT},
+			</if>
+			<if test="record.articleDesc != null">
+				article_desc = #{record.articleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleType != null">
+				article_type = #{record.articleType,jdbcType=TINYINT},
+			</if>
+			<if test="record.hot != null">
+				hot = #{record.hot,jdbcType=BIT},
+			</if>
+			<if test="record.sticky != null">
+				sticky = #{record.sticky,jdbcType=BIT},
+			</if>
+			<if test="record.categoryId != null">
+				category_id = #{record.categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.columnId != null">
+				column_id = #{record.columnId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertId != null">
+				expert_id = #{record.expertId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tbl_article
+		set article_id = #{record.articleId,jdbcType=VARCHAR},
+		article_title = #{record.articleTitle,jdbcType=VARCHAR},
+		article_address = #{record.articleAddress,jdbcType=VARCHAR},
+		comment_quantity = #{record.commentQuantity,jdbcType=INTEGER},
+		browse_quantity = #{record.browseQuantity,jdbcType=INTEGER},
+		publish_date = #{record.publishDate,jdbcType=BIGINT},
+		article_desc = #{record.articleDesc,jdbcType=VARCHAR},
+		article_type = #{record.articleType,jdbcType=TINYINT},
+		hot = #{record.hot,jdbcType=BIT},
+		sticky = #{record.sticky,jdbcType=BIT},
+		category_id = #{record.categoryId,jdbcType=VARCHAR},
+		column_id = #{record.columnId,jdbcType=VARCHAR},
+		expert_id = #{record.expertId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huat.searchengine.entity.TblArticle">
+		update tbl_article
+		<set>
+			<if test="articleTitle != null">
+				article_title = #{articleTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="articleAddress != null">
+				article_address = #{articleAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="commentQuantity != null">
+				comment_quantity = #{commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="browseQuantity != null">
+				browse_quantity = #{browseQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="publishDate != null">
+				publish_date = #{publishDate,jdbcType=BIGINT},
+			</if>
+			<if test="articleDesc != null">
+				article_desc = #{articleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="articleType != null">
+				article_type = #{articleType,jdbcType=TINYINT},
+			</if>
+			<if test="hot != null">
+				hot = #{hot,jdbcType=BIT},
+			</if>
+			<if test="sticky != null">
+				sticky = #{sticky,jdbcType=BIT},
+			</if>
+			<if test="categoryId != null">
+				category_id = #{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="columnId != null">
+				column_id = #{columnId,jdbcType=VARCHAR},
+			</if>
+			<if test="expertId != null">
+				expert_id = #{expertId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where article_id = #{articleId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huat.searchengine.entity.TblArticle">
+		update tbl_article
+		set article_title = #{articleTitle,jdbcType=VARCHAR},
+		article_address = #{articleAddress,jdbcType=VARCHAR},
+		comment_quantity = #{commentQuantity,jdbcType=INTEGER},
+		browse_quantity = #{browseQuantity,jdbcType=INTEGER},
+		publish_date = #{publishDate,jdbcType=BIGINT},
+		article_desc = #{articleDesc,jdbcType=VARCHAR},
+		article_type = #{articleType,jdbcType=TINYINT},
+		hot = #{hot,jdbcType=BIT},
+		sticky = #{sticky,jdbcType=BIT},
+		category_id = #{categoryId,jdbcType=VARCHAR},
+		column_id = #{columnId,jdbcType=VARCHAR},
+		expert_id = #{expertId,jdbcType=VARCHAR}
+		where article_id = #{articleId,jdbcType=VARCHAR}
+	</update>
+
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch">
+		insert into tbl_article
+		(article_id,article_title,article_address,comment_quantity,browse_quantity,
+		publish_date,article_desc,article_type,sticky,expert_id)
+		values
+		<foreach collection="list" item="article" separator=",">
+			(#{article.articleId},#{article.articleTitle},#{article.articleAddress},
+			#{article.commentQuantity},#{article.browseQuantity},#{article.publishDate},
+			#{article.articleDesc},#{article.articleType},#{article.sticky},#{article.expertId})
+		</foreach>
+	</insert>
+	
+	<!-- 更新文章所属分类，在原来的基础上添加 -->
+	<update id="updateCategory" parameterType="map">
+		update tbl_article
+		<set>
+			<if test="record.articleId != null">
+				article_id = #{record.articleId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleTitle != null">
+				article_title = #{record.articleTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleAddress != null">
+				article_address = #{record.articleAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="record.commentQuantity != null">
+				comment_quantity = #{record.commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.browseQuantity != null">
+				browse_quantity = #{record.browseQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.publishDate != null">
+				publish_date = #{record.publishDate,jdbcType=BIGINT},
+			</if>
+			<if test="record.articleDesc != null">
+				article_desc = #{record.articleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleType != null">
+				article_type = #{record.articleType,jdbcType=TINYINT},
+			</if>
+			<if test="record.hot != null">
+				hot = #{record.hot,jdbcType=BIT},
+			</if>
+			<if test="record.sticky != null">
+				sticky = #{record.sticky,jdbcType=BIT},
+			</if>
+			<if test="record.categoryId != null">
+				category_id = CONCAT_WS(",",category_id,#{record.categoryId,jdbcType=VARCHAR}),
+			</if>
+			<if test="record.columnId != null">
+				column_id = #{record.columnId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertId != null">
+				expert_id = #{record.expertId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	
+	<!-- 得到浏览量前十的文章 -->
+	<select id="selectFirst10ByBrowseQuantity" resultMap="BaseResultMap">
+		SELECT * FROM tbl_article ORDER BY browse_quantity DESC LIMIT 10
+	</select>
+	<!-- 得到指定专家浏览量前十的文章 -->
+	<select id="selectByExpertIdLimit" resultMap="BaseResultMap">
+		SELECT * FROM tbl_article WHERE expert_id = #{expertId} ORDER BY browse_quantity DESC LIMIT 10
+	</select>
+	
+	<!-- 查询与指定专家相同地址的专家 -->
+	<select id="selectExpertByEqualsAddress" resultMap="BaseResultMap">
+		SELECT * FROM tbl_expert WHERE expert_id != #{expertId} AND expert_address = #{address} LIMIT 10
+	</select>
+</mapper>

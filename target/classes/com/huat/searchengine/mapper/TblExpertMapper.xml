@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huat.searchengine.mapper.TblExpertMapper">
+	<resultMap id="BaseResultMap" type="com.huat.searchengine.entity.TblExpert">
+		<id column="expert_id" jdbcType="VARCHAR" property="expertId" />
+		<result column="expert_name" jdbcType="VARCHAR" property="expertName" />
+		<result column="expert_address" jdbcType="VARCHAR" property="expertAddress" />
+		<result column="expert_job" jdbcType="VARCHAR" property="expertJob" />
+		<result column="article_quantity" jdbcType="INTEGER" property="articleQuantity" />
+		<result column="article_original" jdbcType="INTEGER" property="articleOriginal" />
+		<result column="reading_quantity" jdbcType="INTEGER" property="readingQuantity" />
+		<result column="fans_quantity" jdbcType="INTEGER" property="fansQuantity" />
+		<result column="like_qunatity" jdbcType="INTEGER" property="likeQunatity" />
+		<result column="comment_quantity" jdbcType="INTEGER" property="commentQuantity" />
+		<result column="focus_quantity" jdbcType="INTEGER" property="focusQuantity" />
+		<result column="blog_address" jdbcType="VARCHAR" property="blogAddress" />
+		<result column="blog_title" jdbcType="VARCHAR" property="blogTitle" />
+		<result column="personal_center" jdbcType="VARCHAR" property="personalCenter" />
+		<result column="expert_avatar" jdbcType="VARCHAR" property="expertAvatar" />
+		<result column="blog_grade" jdbcType="INTEGER" property="blogGrade" />
+		<result column="blog_score" jdbcType="INTEGER" property="blogScore" />
+		<result column="download_grade" jdbcType="INTEGER" property="downloadGrade" />
+		<result column="download_score" jdbcType="INTEGER" property="downloadScore" />
+		<result column="bbs_grade" jdbcType="INTEGER" property="bbsGrade" />
+		<result column="bbs_score" jdbcType="INTEGER" property="bbsScore" />
+		<result column="expert_medals" jdbcType="VARCHAR" property="expertMedals" />
+		<result column="expert_ranking" jdbcType="INTEGER" property="expertRanking" />
+		<result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+		<result column="expert_sign" jdbcType="VARCHAR" property="expertSign" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		expert_id, expert_name, expert_address, expert_job,
+		article_quantity,
+		article_original,
+		reading_quantity, fans_quantity,
+		like_qunatity, comment_quantity, focus_quantity,
+		blog_address,
+		blog_title, personal_center, expert_avatar, blog_grade,
+		blog_score,
+		download_grade, download_score, bbs_grade, bbs_score, expert_medals,
+		expert_ranking,
+		nick_name, expert_sign
+	</sql>
+	<select id="selectByExample" parameterType="com.huat.searchengine.entity.TblExpertExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from tbl_expert
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tbl_expert
+		where expert_id = #{expertId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		tbl_expert
+		where expert_id = #{expertId,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huat.searchengine.entity.TblExpertExample">
+		delete from tbl_expert
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huat.searchengine.entity.TblExpert">
+		insert into tbl_expert
+		(expert_id, expert_name, expert_address,
+		expert_job, article_quantity,
+		article_original,
+		reading_quantity, fans_quantity, like_qunatity,
+		comment_quantity, focus_quantity, blog_address,
+		blog_title,
+		personal_center, expert_avatar,
+		blog_grade, blog_score, download_grade,
+		download_score, bbs_grade, bbs_score,
+		expert_medals, expert_ranking,
+		nick_name,
+		expert_sign)
+		values (#{expertId,jdbcType=VARCHAR},
+		#{expertName,jdbcType=VARCHAR},
+		#{expertAddress,jdbcType=VARCHAR},
+		#{expertJob,jdbcType=VARCHAR}, #{articleQuantity,jdbcType=INTEGER},
+		#{articleOriginal,jdbcType=INTEGER},
+		#{readingQuantity,jdbcType=INTEGER}, #{fansQuantity,jdbcType=INTEGER},
+		#{likeQunatity,jdbcType=INTEGER},
+		#{commentQuantity,jdbcType=INTEGER},
+		#{focusQuantity,jdbcType=INTEGER}, #{blogAddress,jdbcType=VARCHAR},
+		#{blogTitle,jdbcType=VARCHAR}, #{personalCenter,jdbcType=VARCHAR},
+		#{expertAvatar,jdbcType=VARCHAR},
+		#{blogGrade,jdbcType=INTEGER},
+		#{blogScore,jdbcType=INTEGER}, #{downloadGrade,jdbcType=INTEGER},
+		#{downloadScore,jdbcType=INTEGER}, #{bbsGrade,jdbcType=INTEGER},
+		#{bbsScore,jdbcType=INTEGER},
+		#{expertMedals,jdbcType=VARCHAR},
+		#{expertRanking,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR},
+		#{expertSign,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huat.searchengine.entity.TblExpert">
+		insert into tbl_expert
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="expertId != null">
+				expert_id,
+			</if>
+			<if test="expertName != null">
+				expert_name,
+			</if>
+			<if test="expertAddress != null">
+				expert_address,
+			</if>
+			<if test="expertJob != null">
+				expert_job,
+			</if>
+			<if test="articleQuantity != null">
+				article_quantity,
+			</if>
+			<if test="articleOriginal != null">
+				article_original,
+			</if>
+			<if test="readingQuantity != null">
+				reading_quantity,
+			</if>
+			<if test="fansQuantity != null">
+				fans_quantity,
+			</if>
+			<if test="likeQunatity != null">
+				like_qunatity,
+			</if>
+			<if test="commentQuantity != null">
+				comment_quantity,
+			</if>
+			<if test="focusQuantity != null">
+				focus_quantity,
+			</if>
+			<if test="blogAddress != null">
+				blog_address,
+			</if>
+			<if test="blogTitle != null">
+				blog_title,
+			</if>
+			<if test="personalCenter != null">
+				personal_center,
+			</if>
+			<if test="expertAvatar != null">
+				expert_avatar,
+			</if>
+			<if test="blogGrade != null">
+				blog_grade,
+			</if>
+			<if test="blogScore != null">
+				blog_score,
+			</if>
+			<if test="downloadGrade != null">
+				download_grade,
+			</if>
+			<if test="downloadScore != null">
+				download_score,
+			</if>
+			<if test="bbsGrade != null">
+				bbs_grade,
+			</if>
+			<if test="bbsScore != null">
+				bbs_score,
+			</if>
+			<if test="expertMedals != null">
+				expert_medals,
+			</if>
+			<if test="expertRanking != null">
+				expert_ranking,
+			</if>
+			<if test="nickName != null">
+				nick_name,
+			</if>
+			<if test="expertSign != null">
+				expert_sign,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="expertId != null">
+				#{expertId,jdbcType=VARCHAR},
+			</if>
+			<if test="expertName != null">
+				#{expertName,jdbcType=VARCHAR},
+			</if>
+			<if test="expertAddress != null">
+				#{expertAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="expertJob != null">
+				#{expertJob,jdbcType=VARCHAR},
+			</if>
+			<if test="articleQuantity != null">
+				#{articleQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="articleOriginal != null">
+				#{articleOriginal,jdbcType=INTEGER},
+			</if>
+			<if test="readingQuantity != null">
+				#{readingQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="fansQuantity != null">
+				#{fansQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="likeQunatity != null">
+				#{likeQunatity,jdbcType=INTEGER},
+			</if>
+			<if test="commentQuantity != null">
+				#{commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="focusQuantity != null">
+				#{focusQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="blogAddress != null">
+				#{blogAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="blogTitle != null">
+				#{blogTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="personalCenter != null">
+				#{personalCenter,jdbcType=VARCHAR},
+			</if>
+			<if test="expertAvatar != null">
+				#{expertAvatar,jdbcType=VARCHAR},
+			</if>
+			<if test="blogGrade != null">
+				#{blogGrade,jdbcType=INTEGER},
+			</if>
+			<if test="blogScore != null">
+				#{blogScore,jdbcType=INTEGER},
+			</if>
+			<if test="downloadGrade != null">
+				#{downloadGrade,jdbcType=INTEGER},
+			</if>
+			<if test="downloadScore != null">
+				#{downloadScore,jdbcType=INTEGER},
+			</if>
+			<if test="bbsGrade != null">
+				#{bbsGrade,jdbcType=INTEGER},
+			</if>
+			<if test="bbsScore != null">
+				#{bbsScore,jdbcType=INTEGER},
+			</if>
+			<if test="expertMedals != null">
+				#{expertMedals,jdbcType=VARCHAR},
+			</if>
+			<if test="expertRanking != null">
+				#{expertRanking,jdbcType=INTEGER},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="expertSign != null">
+				#{expertSign,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huat.searchengine.entity.TblExpertExample"
+		resultType="java.lang.Long">
+		select count(*) from tbl_expert
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tbl_expert
+		<set>
+			<if test="record.expertId != null">
+				expert_id = #{record.expertId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertName != null">
+				expert_name = #{record.expertName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertAddress != null">
+				expert_address =
+				#{record.expertAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertJob != null">
+				expert_job = #{record.expertJob,jdbcType=VARCHAR},
+			</if>
+			<if test="record.articleQuantity != null">
+				article_quantity =
+				#{record.articleQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.articleOriginal != null">
+				article_original =
+				#{record.articleOriginal,jdbcType=INTEGER},
+			</if>
+			<if test="record.readingQuantity != null">
+				reading_quantity =
+				#{record.readingQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.fansQuantity != null">
+				fans_quantity = #{record.fansQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.likeQunatity != null">
+				like_qunatity = #{record.likeQunatity,jdbcType=INTEGER},
+			</if>
+			<if test="record.commentQuantity != null">
+				comment_quantity =
+				#{record.commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.focusQuantity != null">
+				focus_quantity =
+				#{record.focusQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="record.blogAddress != null">
+				blog_address = #{record.blogAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="record.blogTitle != null">
+				blog_title = #{record.blogTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.personalCenter != null">
+				personal_center =
+				#{record.personalCenter,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertAvatar != null">
+				expert_avatar = #{record.expertAvatar,jdbcType=VARCHAR},
+			</if>
+			<if test="record.blogGrade != null">
+				blog_grade = #{record.blogGrade,jdbcType=INTEGER},
+			</if>
+			<if test="record.blogScore != null">
+				blog_score = #{record.blogScore,jdbcType=INTEGER},
+			</if>
+			<if test="record.downloadGrade != null">
+				download_grade =
+				#{record.downloadGrade,jdbcType=INTEGER},
+			</if>
+			<if test="record.downloadScore != null">
+				download_score =
+				#{record.downloadScore,jdbcType=INTEGER},
+			</if>
+			<if test="record.bbsGrade != null">
+				bbs_grade = #{record.bbsGrade,jdbcType=INTEGER},
+			</if>
+			<if test="record.bbsScore != null">
+				bbs_score = #{record.bbsScore,jdbcType=INTEGER},
+			</if>
+			<if test="record.expertMedals != null">
+				expert_medals = #{record.expertMedals,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertRanking != null">
+				expert_ranking =
+				#{record.expertRanking,jdbcType=INTEGER},
+			</if>
+			<if test="record.nickName != null">
+				nick_name = #{record.nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.expertSign != null">
+				expert_sign = #{record.expertSign,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tbl_expert
+		set expert_id = #{record.expertId,jdbcType=VARCHAR},
+		expert_name = #{record.expertName,jdbcType=VARCHAR},
+		expert_address =
+		#{record.expertAddress,jdbcType=VARCHAR},
+		expert_job =
+		#{record.expertJob,jdbcType=VARCHAR},
+		article_quantity =
+		#{record.articleQuantity,jdbcType=INTEGER},
+		article_original =
+		#{record.articleOriginal,jdbcType=INTEGER},
+		reading_quantity =
+		#{record.readingQuantity,jdbcType=INTEGER},
+		fans_quantity =
+		#{record.fansQuantity,jdbcType=INTEGER},
+		like_qunatity =
+		#{record.likeQunatity,jdbcType=INTEGER},
+		comment_quantity =
+		#{record.commentQuantity,jdbcType=INTEGER},
+		focus_quantity =
+		#{record.focusQuantity,jdbcType=INTEGER},
+		blog_address =
+		#{record.blogAddress,jdbcType=VARCHAR},
+		blog_title =
+		#{record.blogTitle,jdbcType=VARCHAR},
+		personal_center =
+		#{record.personalCenter,jdbcType=VARCHAR},
+		expert_avatar =
+		#{record.expertAvatar,jdbcType=VARCHAR},
+		blog_grade =
+		#{record.blogGrade,jdbcType=INTEGER},
+		blog_score =
+		#{record.blogScore,jdbcType=INTEGER},
+		download_grade =
+		#{record.downloadGrade,jdbcType=INTEGER},
+		download_score =
+		#{record.downloadScore,jdbcType=INTEGER},
+		bbs_grade =
+		#{record.bbsGrade,jdbcType=INTEGER},
+		bbs_score =
+		#{record.bbsScore,jdbcType=INTEGER},
+		expert_medals =
+		#{record.expertMedals,jdbcType=VARCHAR},
+		expert_ranking =
+		#{record.expertRanking,jdbcType=INTEGER},
+		nick_name =
+		#{record.nickName,jdbcType=VARCHAR},
+		expert_sign =
+		#{record.expertSign,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huat.searchengine.entity.TblExpert">
+		update tbl_expert
+		<set>
+			<if test="expertName != null">
+				expert_name = #{expertName,jdbcType=VARCHAR},
+			</if>
+			<if test="expertAddress != null">
+				expert_address = #{expertAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="expertJob != null">
+				expert_job = #{expertJob,jdbcType=VARCHAR},
+			</if>
+			<if test="articleQuantity != null">
+				article_quantity = #{articleQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="articleOriginal != null">
+				article_original = #{articleOriginal,jdbcType=INTEGER},
+			</if>
+			<if test="readingQuantity != null">
+				reading_quantity = #{readingQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="fansQuantity != null">
+				fans_quantity = #{fansQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="likeQunatity != null">
+				like_qunatity = #{likeQunatity,jdbcType=INTEGER},
+			</if>
+			<if test="commentQuantity != null">
+				comment_quantity = #{commentQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="focusQuantity != null">
+				focus_quantity = #{focusQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="blogAddress != null">
+				blog_address = #{blogAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="blogTitle != null">
+				blog_title = #{blogTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="personalCenter != null">
+				personal_center = #{personalCenter,jdbcType=VARCHAR},
+			</if>
+			<if test="expertAvatar != null">
+				expert_avatar = #{expertAvatar,jdbcType=VARCHAR},
+			</if>
+			<if test="blogGrade != null">
+				blog_grade = #{blogGrade,jdbcType=INTEGER},
+			</if>
+			<if test="blogScore != null">
+				blog_score = #{blogScore,jdbcType=INTEGER},
+			</if>
+			<if test="downloadGrade != null">
+				download_grade = #{downloadGrade,jdbcType=INTEGER},
+			</if>
+			<if test="downloadScore != null">
+				download_score = #{downloadScore,jdbcType=INTEGER},
+			</if>
+			<if test="bbsGrade != null">
+				bbs_grade = #{bbsGrade,jdbcType=INTEGER},
+			</if>
+			<if test="bbsScore != null">
+				bbs_score = #{bbsScore,jdbcType=INTEGER},
+			</if>
+			<if test="expertMedals != null">
+				expert_medals = #{expertMedals,jdbcType=VARCHAR},
+			</if>
+			<if test="expertRanking != null">
+				expert_ranking = #{expertRanking,jdbcType=INTEGER},
+			</if>
+			<if test="nickName != null">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="expertSign != null">
+				expert_sign = #{expertSign,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where expert_id = #{expertId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huat.searchengine.entity.TblExpert">
+		update tbl_expert
+		set expert_name = #{expertName,jdbcType=VARCHAR},
+		expert_address =
+		#{expertAddress,jdbcType=VARCHAR},
+		expert_job =
+		#{expertJob,jdbcType=VARCHAR},
+		article_quantity =
+		#{articleQuantity,jdbcType=INTEGER},
+		article_original =
+		#{articleOriginal,jdbcType=INTEGER},
+		reading_quantity =
+		#{readingQuantity,jdbcType=INTEGER},
+		fans_quantity =
+		#{fansQuantity,jdbcType=INTEGER},
+		like_qunatity =
+		#{likeQunatity,jdbcType=INTEGER},
+		comment_quantity =
+		#{commentQuantity,jdbcType=INTEGER},
+		focus_quantity =
+		#{focusQuantity,jdbcType=INTEGER},
+		blog_address =
+		#{blogAddress,jdbcType=VARCHAR},
+		blog_title =
+		#{blogTitle,jdbcType=VARCHAR},
+		personal_center =
+		#{personalCenter,jdbcType=VARCHAR},
+		expert_avatar =
+		#{expertAvatar,jdbcType=VARCHAR},
+		blog_grade =
+		#{blogGrade,jdbcType=INTEGER},
+		blog_score =
+		#{blogScore,jdbcType=INTEGER},
+		download_grade =
+		#{downloadGrade,jdbcType=INTEGER},
+		download_score =
+		#{downloadScore,jdbcType=INTEGER},
+		bbs_grade =
+		#{bbsGrade,jdbcType=INTEGER},
+		bbs_score = #{bbsScore,jdbcType=INTEGER},
+		expert_medals = #{expertMedals,jdbcType=VARCHAR},
+		expert_ranking =
+		#{expertRanking,jdbcType=INTEGER},
+		nick_name =
+		#{nickName,jdbcType=VARCHAR},
+		expert_sign =
+		#{expertSign,jdbcType=VARCHAR}
+		where expert_id =
+		#{expertId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch">
+		insert into tbl_expert
+		(expert_id,expert_name,expert_address,expert_job,article_quantity,
+		reading_quantity,blog_address,personal_center,expert_avatar)
+		values
+		<foreach collection="list" item="expert" separator=",">
+			(#{expert.expertId},#{expert.expertName},#{expert.expertAddress},
+			#{expert.expertJob},#{expert.articleQuantity},#{expert.readingQuantity},
+			#{expert.blogAddress},#{expert.personalCenter},#{expert.expertAvatar})
+		</foreach>
+	</insert>
+	<!-- 查询出所有专家的博客地址 -->
+	<select id="selectAllBlogAddress" resultType="string">
+		SELECT blog_address
+		FROM tbl_expert
+	</select>
+	<!-- 得到阅读量前十的博主 -->
+	<select id="selectFirst10ByReadingQuantity" resultMap="BaseResultMap">
+		SELECT * FROM tbl_expert ORDER BY reading_quantity DESC LIMIT 10
+	</select>
+	
+	<!-- 查询与指定专家相同地址的专家 -->
+	<select id="selectExpertByEqualsAddress" resultMap="BaseResultMap">
+		SELECT * FROM tbl_expert WHERE expert_id != #{expertId} AND expert_address = #{address} LIMIT 10
+	</select>
+</mapper>

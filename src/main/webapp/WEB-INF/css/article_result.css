@@ -1,0 +1,390 @@
+.queryForm {
+	background-color: #f1f1f1;
+	border-bottom: 1px solid #666;
+	border-color: #e5e5e5;
+	padding: 0 20px;
+}
+
+.searchText {
+	width: 490px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 18px;
+	padding: 5px 9px;
+}
+
+.searchText:hover {
+	border-width: 1px;
+	border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9 !important;
+}
+
+.searchBtn {
+	width: 100px;
+	height: 35px;
+	line-height: 27px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	background-color: #f8f8f8;
+	border: 1px solid #c6c6c6;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	background-color: #38f;
+	color: white;
+	cursor: default;
+	font-family: arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	margin: 11px 4px;
+	min-width: 54px;
+	padding: 0 16px;
+	text-align: center;
+}
+
+.searchBtn:hover {
+	background-color: #317ef3;
+	border-bottom: 1px solid #2868c8;
+	*border-bottom: none;
+	box-shadow: 1px 1px 1px #ccc;
+	cursor: pointer;
+}
+
+.result-item {
+	padding: 10px 600px 10px 102px;
+}
+
+#tads a, #tadsb a, #res a, #rhs a, #taw a {
+	text-decoration: none;
+}
+
+a:link {
+	cursor: pointer;
+}
+
+.cite {
+	color: green;
+	font-size: 13px;
+}
+
+.item-url {
+	text-decoration: none;
+	color: #2981a9;
+}
+
+.item-content {
+	color: #545454;
+	font-size: small;
+	line-height: 16px;
+}
+
+#resultStats {
+	line-height: 43px;
+	-webkit-transition: all 220ms ease-in-out;
+	color: #808080;
+	padding: 0 8px 0 102px;
+	font-size: small;
+}
+
+.copyright {
+	color: #666;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#page {
+	font: 14px arial;
+	white-space: nowrap;
+	padding: 0 0 0 102px;
+	margin: 30px 0 40px
+}
+
+#page a, #page strong {
+	display: inline-block;
+	vertical-align: text-bottom;
+	height: 34px;
+	text-align: center;
+	line-height: 34px;
+	text-decoration: none;
+	overflow: hidden;
+	margin-right: 9px;
+	background: #fff
+}
+
+#page a {
+	cursor: pointer
+}
+
+#page a:hover {
+	background: 0 0
+}
+
+#page .n:hover, #page a:hover .pc {
+	background: #f2f8ff;
+	border: 1px solid #38f
+}
+
+#page .n {
+	height: 34px;
+	padding: 0 18px;
+	border: 1px solid #e1e2e3
+}
+
+#page span {
+	display: block;
+	background-color: white;
+	color: blue;
+}
+
+#page .pc {
+	width: 34px;
+	height: 34px;
+	border: 1px solid #e1e2e3;
+	cursor: pointer
+}
+
+#page strong .pc {
+	cursor: auto
+}
+
+#page strong .pc {
+	border: 0;
+	width: 34px;
+	height: 34px;
+	line-height: 34px
+}
+
+#content_right {
+	border-left: 1px solid #e1e1e1;
+	float: right;
+	width: 434px;
+	margin-top: 45px;
+	margin-right: 100px;
+}
+
+.cr-offset {
+	padding-left: 17px;
+}
+
+.cr-title {
+	font-size: 14px;
+	line-height: 1.29;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.c-table {
+	width: 80%;
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+.c-table th, .c-table td {
+	padding-left: 0px;
+	line-height: 1.54;
+	font-size: 13px;
+	border-bottom: 1px solid #f3f3f3;
+	text-align: left
+}
+
+.cr-content .c-table th:first-child, .cr-content .c-table td:first-child
+	{
+	padding-left: 0
+}
+
+.c-table th {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	font-weight: 400;
+	color: #666;
+	border-color: #f0f0f0;
+	white-space: nowrap;
+	background-color: #fafafa
+}
+
+.c-table td {
+	padding-top: 6.5px;
+	padding-bottom: 6.5px
+}
+
+.c-table-hasimg td {
+	padding-top: 0px;
+	padding-bottom: 10px
+}
+
+.c-table a, .c-table em {
+	text-decoration: none
+}
+
+.c-table a:hover, .c-table a:hover em {
+	text-decoration: underline
+}
+
+.c-table a.c-icon:hover {
+	text-decoration: none
+}
+
+.c-table .c-btn:hover, .c-table .c-btn:hover em {
+	text-decoration: none
+}
+
+.opr-toplist-table .opr-toplist-right {
+	text-align: right;
+	white-space: nowrap
+}
+
+.c-index {
+	display: inline-block;
+	padding: 1px 0;
+	color: #fff;
+	width: 14px;
+	line-height: 100%;
+	font-size: 12px;
+	text-align: center;
+	background-color: #8eb9f5
+}
+
+.c-index-hot, .c-index-hot1 {
+	background-color: #f54545
+}
+
+.c-index-hot2 {
+	background-color: #ff8547
+}
+
+.c-index-hot3 {
+	background-color: #ffac38
+}
+
+.c-gap-icon-right-small {
+	margin-right: 5px
+}
+
+input[type="radio"] {
+	width: 15px;
+	height: 15px;
+}
+
+label {
+	padding-left: 1px;
+	padding-top: 5px;
+	padding-bottom: 8px;
+}
+.AppHeader-login {
+	margin-right: 16px;
+}
+
+.Button {
+	color: #0084ff;
+	border-color: #0084ff;
+	display: inline-block;
+	padding: 0 16px;
+	font-size: 14px;
+	line-height: 32px;
+	color: #0084ff;
+	text-align: center;
+	cursor: pointer;
+	background: none;
+	border: 1px solid;
+	border-radius: 3px;
+	border-color: #0084ff;
+}
+
+.Button--primary {
+	color: #fff;
+	background-color: #0084ff;
+}
+
+.top-nav-profile {
+	float: right;
+	position: relative;
+	min-width: 120px;
+	margin-right: 100px;
+	z-index: 10;
+}
+
+.zu-top-nav-userinfo {
+	position: relative;
+	height: 45px;
+	line-height: 45px;
+	text-indent: 46px;
+	color: #fff;
+	text-decoration: none;
+	border-top: 0;
+	background: transparent;
+	box-shadow: none;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.top-nav-profile a {
+	display: block;
+	width: 140px;
+	background-color: #095fb3;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .12);
+	font-size: 14px;
+}
+
+.zu-top-nav-userinfo .Avatar {
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	border: 1px solid rgba(0, 0, 0, .1);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .1);
+	background-color: transparent;
+}
+
+.Avatar {
+	width: 25px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #eee;
+}
+
+.top-nav-profile .top-nav-dropdown {
+	top: 46px;
+}
+
+.top-nav-dropdown {
+	display: none;
+	margin: 0;
+	position: absolute;
+	left: -40;
+}
+
+.top-nav-dropdown li {
+	margin: 0;
+	list-style: none;
+}
+
+.top-nav-dropdown li:first-child>a {
+	border-top: 0;
+}
+
+.top-nav-profile .top-nav-dropdown a {
+	width: 120px;
+}
+
+.top-nav-dropdown li a {
+	display: block;
+	width: 145px;
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+	text-decoration: none;
+	border-top: 1px solid #0d5aa5;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.top-nav-dropdown .zg-icon {
+	width: 20px;
+	height: 20px;
+	margin: 0 11px 0 15px;
+	vertical-align: -7px;
+}
+
+.zg-icon-dd-home {
+	background-position: -6px -7px;
+}
